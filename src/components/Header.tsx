@@ -3,7 +3,7 @@ import { usePrivy } from "@privy-io/react-auth";
 import ThemeToggle from "./ThemeToggle";
 
 const Header: React.FC<{ onMenu: () => void }> = ({ onMenu }) => {
-  const { ready, authenticated, login, logout, user } = usePrivy();
+  const { ready, authenticated, login, user } = usePrivy();
 
   if (!ready) return null;
 

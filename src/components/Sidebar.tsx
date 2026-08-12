@@ -17,7 +17,7 @@ const conversations = [
   },
 ];
 
-const Sidebar: React.FC<{ onClose?: () => void }> = ({ onClose }) => {
+const Sidebar: React.FC<{}> = () => {
   const { ready, authenticated, login, logout } = usePrivy();
 
   if (!ready) return null;

@@ -9,7 +9,7 @@ type Message = {
 };
 
 const ChatWindow: React.FC = () => {
-  const { getAccessToken, ready, authenticated, login } = usePrivy();
+  const { ready, authenticated, login } = usePrivy();
 
   const [messages, setMessages] = useState<Message[]>([
     {
@@ -46,7 +46,6 @@ const ChatWindow: React.FC = () => {
 
       if (!content || isTyping) return;
 
-      const token = await getAccessToken();
 
       const userMsg: Message = {
         id: `u-${Date.now()}`,
