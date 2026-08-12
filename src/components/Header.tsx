@@ -35,7 +35,7 @@ const Header: React.FC<{ onMenu: () => void }> = ({ onMenu }) => {
           </div>
 
           <div className="agent-info">
-            <div className="agent-name">Sentinel</div>
+            <div className="agent-name">Senethi</div>
           </div>
         </div>
       </div>

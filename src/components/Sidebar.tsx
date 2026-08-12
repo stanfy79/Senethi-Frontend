@@ -100,7 +100,7 @@ const Sidebar: React.FC<{}> = () => {
         <div className="agent-status">
           <span className="status-dot" />
           <div>
-            <strong>Sentinel AI</strong>
+            <strong>Senethi AI</strong>
             <small>Online</small>
           </div>
         </div>

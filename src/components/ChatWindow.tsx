@@ -119,7 +119,7 @@ const ChatWindow: React.FC = () => {
 
               <div className="message-content">
                 <div className="message-label">
-                  {message.from === "assistant" ? "Sentinel" : "You"}
+                  {message.from === "assistant" ? "Senethi" : "You"}
                 </div>
 
                 <div className="message-text">{message.text}</div>
@@ -132,7 +132,7 @@ const ChatWindow: React.FC = () => {
               <div className="message-avatar">✦</div>
 
               <div className="message-content">
-                <div className="message-label">Sentinel</div>
+                <div className="message-label">Senethi</div>
 
                 <div className="typing-indicator">
                   <span />
@@ -153,7 +153,7 @@ const ChatWindow: React.FC = () => {
             value={text}
             onChange={(e) => setText(e.target.value)}
             onKeyDown={handleKeyDown}
-            placeholder="Message Sentinel..."
+            placeholder="Message Senethi..."
             rows={1}
           />
 
@@ -178,7 +178,7 @@ const ChatWindow: React.FC = () => {
         </form>
 
         <div className="composer-disclaimer">
-          Sentinel can make mistakes. Verify important information.
+          Senethi can make mistakes. Verify important information.
         </div>
       </div>
     </main>
