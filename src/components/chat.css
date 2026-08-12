@@ -259,7 +259,7 @@ body {
 
   gap: 7px;
 
-  margin: 12px 0 20px;
+  margin-bottom: 20px;
   padding: 0 9px;
 
   border-radius: 8px;
@@ -485,12 +485,32 @@ body {
   font-size: 10px;
 }
 
+.signer-button button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 8px;
+  color: var(--accent-text);
+  background-color: var(--accent);
+  font-size: 12px;
+  font-weight: 550;
+  padding: 10px;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
 
 /* Sidebar close */
 
 .icon-button {
   width: 30px;
   height: 30px;
+  padding: 1px;
+  right: 10px;
+  position: absolute;
 
   border: 0;
   border-radius: 7px;
@@ -601,9 +621,10 @@ body {
 
 .agent-info {
   display: flex;
-  flex-direction: column;
-
-  gap: 2px;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
 }
 
 .agent-name {
@@ -643,8 +664,6 @@ body {
 
   gap: 8px;
 
-  padding: 3px 4px 3px 10px;
-
   border: 1px solid var(--border);
   border-radius: 10px;
 
@@ -659,10 +678,9 @@ body {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-
+  padding: 10px;
   gap: 1px;
-
-  max-width: 150px;
+  max-width: 160px;
 }
 
 .account-name {
@@ -678,8 +696,8 @@ body {
 }
 
 .account-label {
-  color: var(--text-muted);
-
+  color: #007629;
+  font-weight: 700;
   font-size: 9px;
 }
 
@@ -729,7 +747,7 @@ body {
 
 .signin-button {
   height: 34px;
-
+  width: 100%;
   padding: 0 14px;
 
   border: 0;

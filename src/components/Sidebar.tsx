@@ -1,3 +1,4 @@
+import { usePrivy } from "@privy-io/react-auth";
 import React from "react";
 
 const conversations = [
@@ -17,26 +18,20 @@ const conversations = [
 ];
 
 const Sidebar: React.FC<{ onClose?: () => void }> = ({ onClose }) => {
+  const { ready, authenticated, login, logout } = usePrivy();
+
+  if (!ready) return null;
+
+  const handleSignOut = async () => {
+    try {
+      await logout();
+    } catch (error) {
+      console.warn("Sign out failed:", error);
+    }
+  };
+
   return (
     <aside className="chat-sidebar">
-      {/* Header */}
-      <div className="sidebar-header">
-        <div className="brand">
-          <div className="brand-mark">S</div>
-          <span>Sentinel</span>
-        </div>
-
-        {onClose && (
-          <button
-            type="button"
-            onClick={onClose}
-            className="icon-button close-mobile"
-            aria-label="Close sidebar"
-          >
-            ×
-          </button>
-        )}
-      </div>
 
       {/* Search */}
       <div className="sidebar-search">
@@ -83,8 +78,25 @@ const Sidebar: React.FC<{ onClose?: () => void }> = ({ onClose }) => {
       {/* Bottom */}
       <div className="sidebar-footer">
         <button type="button" className="footer-item">
-          <span>⚙</span>
-          Settings
+          {authenticated ? (
+            <button
+              type="button"
+              className="signin-button"
+              onClick={handleSignOut}
+              aria-label="Sign out"
+              title="Sign out"
+            >
+              Sign out
+            </button>
+        ) : (
+          <button
+            type="button"
+            className="signin-button"
+            onClick={() => login()}
+          >
+            Sign in
+          </button>
+        )}
         </button>
 
         <div className="agent-status">

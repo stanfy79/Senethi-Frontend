@@ -7,16 +7,9 @@ const Header: React.FC<{ onMenu: () => void }> = ({ onMenu }) => {
 
   if (!ready) return null;
 
-  const handleSignOut = async () => {
-    try {
-      await logout();
-    } catch (error) {
-      console.warn("Sign out failed:", error);
-    }
-  };
-
   const displayName =
     user?.email?.address ||
+    user?.wallet?.address.substring(0, 6) + "..." + user?.wallet?.address.substring(user?.wallet?.address.length - 6) ||
     user?.google?.email ||
     user?.twitter?.username ||
     "Account";
@@ -43,10 +36,6 @@ const Header: React.FC<{ onMenu: () => void }> = ({ onMenu }) => {
 
           <div className="agent-info">
             <div className="agent-name">Sentinel</div>
-            <div className="agent-status">
-              <span className="status-dot" />
-              Online
-            </div>
           </div>
         </div>
       </div>
@@ -61,28 +50,6 @@ const Header: React.FC<{ onMenu: () => void }> = ({ onMenu }) => {
               <span className="account-name">{displayName}</span>
               <span className="account-label">Connected</span>
             </div>
-
-            {/* {user?.avatar ? (
-              <img
-                src={user.avatar}
-                alt="Account avatar"
-                className="avatar"
-              />
-            ) : (
-              <div className="avatar avatar-fallback">
-                {displayName.charAt(0).toUpperCase()}
-              </div>
-            )} */}
-
-            <button
-              type="button"
-              className="account-menu"
-              onClick={handleSignOut}
-              aria-label="Sign out"
-              title="Sign out"
-            >
-              ⋯
-            </button>
           </div>
         ) : (
           <button

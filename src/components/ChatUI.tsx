@@ -17,7 +17,7 @@ const ChatUI: React.FC = () => {
         onMenu={() => setMobileOpen((open) => !open)}
       />
 
-      <div className="chat-layout">
+      <div className={`chat-layout ${mobileOpen ? "mobile-open" : ""}`}>
         <Sidebar
           onClose={closeSidebar}
         />

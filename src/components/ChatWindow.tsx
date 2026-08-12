@@ -9,15 +9,13 @@ type Message = {
 };
 
 const ChatWindow: React.FC = () => {
-  const { getAccessToken, ready, authenticated } = usePrivy();
-
-  if(!ready || !authenticated) return null;
+  const { getAccessToken, ready, authenticated, login } = usePrivy();
 
   const [messages, setMessages] = useState<Message[]>([
     {
       id: "m1",
       from: "assistant",
-      text: "Hello — how can I help you today?",
+      text: "Hello — how can I help you today? You can send transactions (Send 1 usdc to 0xb0A45280a68343Ad8c28EB7ca1b15B64720287C7), check your wallet balance (my balance), and more. Just ask!",
     },
   ]);
 
@@ -41,43 +39,65 @@ const ChatWindow: React.FC = () => {
   const send = async (e?: React.FormEvent) => {
     e?.preventDefault();
 
-    const content = text.trim();
+    try {
+      if (!ready || !authenticated) login();
 
-    if (!content || isTyping) return;
+      const content = text.trim();
 
-    const token = await getAccessToken();
+      if (!content || isTyping) return;
 
-    await axios.post(`${import.meta.env.VITE_BASE_URL}/v1/agent/run`, {
-      message: content,
-    }, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
+      const token = await getAccessToken();
 
-    const userMsg: Message = {
-      id: `u-${Date.now()}`,
-      from: "user",
-      text: content,
-    };
+      const userMsg: Message = {
+        id: `u-${Date.now()}`,
+        from: "user",
+        text: content,
+      };
 
-    setMessages((current) => [...current, userMsg]);
-    setText("");
-    setIsTyping(true);
+      setMessages((current) => [...current, userMsg]);
+      setText("");
+      setIsTyping(true);
 
-    setTimeout(() => {
+      setTimeout(() => {
       setMessages((current) => [
         ...current,
         {
           id: `a-${Date.now()}`,
           from: "assistant",
-          text: `Echo: ${content}`,
+          text: "Processing your request... This may take a few seconds.",
         },
       ]);
+    }, 1000);
 
+      const response = await axios.post(
+        `${import.meta.env.VITE_BASE_URL}/v1/agent/run`,
+        {
+          message: content,
+        },
+      );
+      
+      setMessages((current) => [
+        ...current,
+        {
+          id: `a-${Date.now()}`,
+          from: "assistant",
+          text: `${response.data.response.message}`,
+        },
+      ]);
       setIsTyping(false);
-    }, 700);
+
+    } catch (error) {
+      console.error("Error sending message:", error);
+      setMessages((current) => [
+        ...current,
+        {
+          id: `a-${Date.now()}`,
+          from: "assistant",
+          text: `${error instanceof Error ? error.message : "An error occurred while sending the message."}`,
+        },
+      ]);
+      setIsTyping(false);
+    }
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {

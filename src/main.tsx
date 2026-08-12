@@ -20,7 +20,7 @@ createRoot(document.getElementById('root')!).render(
       config={{
         embeddedWallets: {
           ethereum: {
-            createOnLogin: 'users-without-wallets'
+            createOnLogin: "all-users"
           }
         },
         // disableAnalytics: true,
