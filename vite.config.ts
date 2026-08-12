@@ -1,13 +1,16 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
 
-// https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  optimizeDeps: {
-    exclude: ['@privy-io/react-auth'],
+
+  build: {
+    rollupOptions: {
+      external: [
+        "@solana/kit",
+        "@solana-program/system",
+        "@solana-program/token",
+      ],
+    },
   },
-  ssr: {
-    noExternal: ['@privy-io/react-auth'],
-  },
-})
+});

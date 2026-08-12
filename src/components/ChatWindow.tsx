@@ -15,7 +15,7 @@ const ChatWindow: React.FC = () => {
     {
       id: "m1",
       from: "assistant",
-      text: "Hello — how can I help you today? You can send transactions (Send 1 usdc to 0xb0A45280a68343Ad8c28EB7ca1b15B64720287C7), check your wallet balance (my balance), and more. Just ask!",
+      text: "Hello — how can I help you today? You can send transactions (Send 1 usdc to 0xb0A45280a...), check your wallet balance (my balance), and more. Just ask!",
     },
   ]);
 

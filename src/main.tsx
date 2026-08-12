@@ -24,7 +24,7 @@ createRoot(document.getElementById('root')!).render(
           }
         },
         // disableAnalytics: true,
-        appearance: { walletChainType: "ethereum-and-solana" },
+        appearance: { walletChainType: "ethereum-only" },
       }}
     >
     <App />

@@ -13,8 +13,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@tanstack/react-query": "^5.101.4",
     "@privy-io/react-auth": "^3.35.2",
+    "@solana-program/system": "^0.13.0",
+    "@solana/kit": "^7.0.0",
+    "@tanstack/react-query": "^5.101.4",
     "axios": "^1.19.0",
     "dotenv": "^16.4.3",
     "express": "^4.18.4",
