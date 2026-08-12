@@ -18,9 +18,7 @@ const ChatUI: React.FC = () => {
       />
 
       <div className={`chat-layout ${mobileOpen ? "mobile-open" : ""}`}>
-        <Sidebar
-          onClose={closeSidebar}
-        />
+        <Sidebar />
 
         {mobileOpen && (
           <button

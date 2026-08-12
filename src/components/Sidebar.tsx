@@ -77,7 +77,6 @@ const Sidebar: React.FC<{}> = () => {
 
       {/* Bottom */}
       <div className="sidebar-footer">
-        <button type="button" className="footer-item">
           {authenticated ? (
             <button
               type="button"
@@ -97,7 +96,6 @@ const Sidebar: React.FC<{}> = () => {
             Sign in
           </button>
         )}
-        </button>
 
         <div className="agent-status">
           <span className="status-dot" />
